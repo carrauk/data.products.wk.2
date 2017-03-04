@@ -3,11 +3,11 @@ title: "Coursera - Data Products course wk2 submission"
 output: 
   html_document
 ---
-
-
 # Intro
 
-This document contains a map generated using leaflet via rmarkdown document. It shows the London tube stations within Zone 1. The data was downloaded from https://www.doogal.co.uk/london_stations.php.
+This document contains a map generated using leaflet via rmarkdown document. It shows the London tube stations within Zone 1. 
+
+The data was downloaded from https://www.doogal.co.uk/london_stations.php.
 
 The date of generation is : `r lubridate::today()`.
 
