@@ -1,0 +1,44 @@
+---
+title: "Coursera - Data Products course wk2 submission"
+output: 
+  html_document
+---
+
+
+# Intro
+
+This document contains a map generated using leaflet via rmarkdown document. It shows the London tube stations within Zone 1. The data was downloaded from https://www.doogal.co.uk/london_stations.php.
+
+The date of generation is : `r lubridate::today()`.
+
+# Map
+
+```{r, ref.label="code", echo=FALSE, eval=TRUE}
+```
+
+# Code
+
+This is the code for generating the map above.
+
+```{r code, echo=TRUE, eval=FALSE}
+library(leaflet)
+# Load data
+data.lon.tube <- read.csv("London stations.csv")
+data.lon.tube <- data.lon.tube[data.lon.tube$Zone=="1",]
+
+# Tube icon
+tube.icon <- makeIcon(iconUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Underground.svg/200px-Underground.svg.png",
+                      iconWidth = 31*215/230, iconHeight = 16)
+
+# get latitude and longitude
+data.lat.lng <- data.lon.tube[,c('Latitude','Longitude')]
+# labels
+data.labels <- paste0(data.lon.tube$Station, " - ", data.lon.tube$Postcode) 
+
+data.lat.lng %>%
+        leaflet() %>%
+        addTiles() %>%
+        addMarkers(icon=tube.icon, label=data.labels, clusterOptions=markerClusterOptions())
+
+```
+
